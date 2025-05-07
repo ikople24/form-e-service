@@ -4,7 +4,7 @@ const RequestList = () => {
     const [requests, setRequests] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/requests")
+        fetch("http://localhost:3002/api/requests")
             .then(res => res.json())
             .then(data => setRequests(data));
     }, []);

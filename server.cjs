@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config(); // ✅ โหลด env ก่อน
 
 const app = express();
-const PORT = 5000;
+const PORT = 3002;
 
 // ✅ connect mongoDB แค่ครั้งเดียว
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/requestsDB')
@@ -38,7 +38,7 @@ app.post('/api/request', async (req, res) => {
   try {
     const newRequest = new RequestModel({ type, fullname, address, phone, signature });
     await newRequest.save();
-    res.status(201).json({ message: 'Request saved successfully' });
+    res.status(201).json({ success: true, message: 'Request saved successfully' });
   } catch (error) {
     console.error('Error saving request:', error);
     res.status(500).json({ error: 'Internal server error' });
