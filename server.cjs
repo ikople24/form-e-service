@@ -6,12 +6,13 @@ const bodyParser = require('body-parser');
 require('dotenv').config(); // ✅ โหลด env ก่อน
 
 const app = express();
-const PORT = 3002;
+const PORT = process.env.PORT || 3002;
 
 // ✅ connect mongoDB แค่ครั้งเดียว
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/requestsDB')
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error(err));
+  process.env.MONGO_URI
 
 // Schema
 const RequestSchema = new mongoose.Schema({
