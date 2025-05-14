@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-
 require('dotenv').config(); // ✅ โหลด env ก่อน
 
 const app = express();
@@ -11,8 +10,7 @@ const PORT = process.env.PORT || 3002;
 // ✅ connect mongoDB แค่ครั้งเดียว
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/requestsDB')
   .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error(err));
-  process.env.MONGO_URI
+  .catch(err => console.error('MongoDB connection error:', err));
 
 // Schema
 const RequestSchema = new mongoose.Schema({
@@ -27,7 +25,10 @@ const RequestSchema = new mongoose.Schema({
 const RequestModel = mongoose.model('Request', RequestSchema);
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'https://form-e-service.vercel.app',
+  methods: ['GET', 'POST'],
+}));
 app.use(bodyParser.json());
 
 // Routes
