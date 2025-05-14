@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 
 const RequestList = () => {
+    const [requests, setRequests] = useState([]);
+
     useEffect(() => {
-    fetch("https://form-e-service-production.up.railway.app/api/requests")
-        .then(res => res.json())
-        .then(data => setRequests(data));
-}, []);
+        fetch("https://form-e-service-production.up.railway.app/api/requests")
+            .then(res => res.json())
+            .then(data => setRequests(data));
+    }, []);
 
     return (
         <div>
@@ -20,4 +22,4 @@ const RequestList = () => {
         </div>
     )
 }
-export default RequestList
+export default RequestList;
