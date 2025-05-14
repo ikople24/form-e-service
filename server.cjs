@@ -27,7 +27,7 @@ const RequestModel = mongoose.model('Request', RequestSchema);
 // Middleware
 app.use(cors({
   origin: '*',
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST','OPTIONS'],
 }));
 
 app.use(bodyParser.json());
