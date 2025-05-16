@@ -90,7 +90,7 @@ export default function RequestForm() {
 
     try {
       const res = await fetch(
-        "https://form-e-service-production.up.railway.app/api/request",
+        "https://server-e-service-production.up.railway.app/api/request",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
